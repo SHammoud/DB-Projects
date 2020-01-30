@@ -1,2 +1,0 @@
-# DB-Projects
-Datagrip repo
