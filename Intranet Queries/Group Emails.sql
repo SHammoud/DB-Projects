@@ -1,8 +1,8 @@
-SELECT CM.slug                              AS "Artist",
+SELECT REPLACE(CM.slug, '-', '')                              AS "Artist",
        GROUP_CONCAT(U.email SEPARATOR ', ') AS "Team",
        CM.created_at AS "Created at",
        CM.updated_at AS "Updated at",
-       CM.dormant_date AS "Dormant at"
+       CM.inactive_date AS "Inactive at"
 
 
 FROM users U
