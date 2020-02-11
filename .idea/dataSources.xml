@@ -25,5 +25,11 @@
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
       <jdbc-url>jdbc:sqlserver://tempo.cldivnzl9kql.eu-west-2.rds.amazonaws.com:1433</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="Paradigm Analysis" uuid="1e3bda63-b751-430a-898b-150cb28e84ca">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://paradigm-analysis.c1rbwofog4zb.us-west-2.rds.amazonaws.com:3306/paradigm_analysis</jdbc-url>
+    </data-source>
   </component>
 </project>
