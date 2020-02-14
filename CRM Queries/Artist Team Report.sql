@@ -1,4 +1,4 @@
-# Requested by Dave Blackgrove, all management users for his active roster
+# Requested by Dave Blackgrove, all artist team for his active roster
 # All contacts attached to artists
 # Whose primary agent is specified
 # And the artist is not disabled
@@ -15,7 +15,10 @@ FROM Artist A
          LEFT JOIN Artist_Contact AC ON AC.artistID = A.id
          LEFT JOIN Contact C ON C.id = AC.contactID
 
-WHERE A.agentID = # ADD AGENT ID HERE
-  AND A.disabled IS NOT NULL
+WHERE
+    A.agentID = 39 # ADD AGENT ID HERE
+    AND A.disabled IS NULL
+    AND C.disabled IS NULL
+
 
 ORDER BY A.name ASC
