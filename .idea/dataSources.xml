@@ -1,41 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Production" uuid="eb97e7a3-c7a0-459a-a194-9d2822d244ba">
+    <data-source source="LOCAL" name="CRM PROD" group="PROD" uuid="eb97e7a3-c7a0-459a-a194-9d2822d244ba">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://productiondb.chs7y7nfdeyz.eu-west-1.rds.amazonaws.com:3306/v2_project_coda</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="Testing" uuid="74c550a5-77c4-4f86-b959-a27136ace1b8">
+    <data-source source="LOCAL" name="CRM TEST" group="TEST" uuid="74c550a5-77c4-4f86-b959-a27136ace1b8">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://testingdb.chs7y7nfdeyz.eu-west-1.rds.amazonaws.com:3306/testing</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="Local Server" uuid="00902c47-d14e-473f-96f2-910126133319">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://192.168.73.128:3306/intranet</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="Tempo" uuid="133d3912-897b-486a-a259-85d1d4b86311">
-      <driver-ref>sqlserver.ms</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://tempo.cldivnzl9kql.eu-west-2.rds.amazonaws.com:1433</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="Paradigm Analysis" uuid="1e3bda63-b751-430a-898b-150cb28e84ca">
+    <data-source source="LOCAL" name="ANALYSIS - TEST" group="TEST" uuid="1e3bda63-b751-430a-898b-150cb28e84ca">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://paradigm-analysis.c1rbwofog4zb.us-west-2.rds.amazonaws.com:3306/paradigm_analysis</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="Global Client Portal" uuid="f61e98f7-a32e-44c1-bc80-294cd6e590c0">
+    <data-source source="LOCAL" name="GCP PROD" group="PROD" uuid="f61e98f7-a32e-44c1-bc80-294cd6e590c0">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/phase1</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Local SQL DEV (Windows)" group="DEV" uuid="1299ecf9-9b4b-4e2d-998a-5b842e5d176b">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <remarks>SQL 2019 Windows - Server 2019</remarks>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://192.168.73.130:1433;database=Tempo</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Local SQL DEV (Linux)" group="DEV" uuid="04c0a30b-4739-4bb4-bc4c-6a445064ee38">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <remarks>SQL 2019 Linux - Ubuntu</remarks>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://192.168.73.131:1433;database=Tempo</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Local MYSQL DEV (Linux)" group="DEV" uuid="2ecca888-278e-43bc-bd9f-f3a06846708a">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <remarks>Maria DB - Ubuntu</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://192.168.73.131:3306</jdbc-url>
     </data-source>
   </component>
 </project>
