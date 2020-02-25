@@ -5,13 +5,13 @@ SET @prod = ; # <-- ADD production contract ID here
 
 UPDATE Deal D
 SET D.paymentSchedulePresetId = NULL , D.nextCodaPaymentScheduleID = NULL , D.nextPaymentScheduleID = NULL
-WHERE D.id = 2;
+WHERE D.id = @prod;
 
 DELETE FROM Payment_Schedule
 WHERE Payment_Schedule.dealID = @prod;
 
 DELETE FROM Contract_Extra
-WHERE Contract_Extra.contractID = @prod
+WHERE Contract_Extra.contractID = @prod;
 
 DELETE FROM Deal_Account
 WHERE Deal_Account.dealID = @prod;
