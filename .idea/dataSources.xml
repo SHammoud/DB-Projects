@@ -52,5 +52,17 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://DB-S-TRAN-GLOBAL-SYS.CWHMZLRPQ9V0.US-EAST-1.RDS.AMAZONAWS.COM:3306/CLOUD_STAGING</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="CODA-REPLICA" group="PROD" uuid="0d921659-0daa-497b-b182-d3ab5cbd806b">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://codasharedreplica.cwhmzlrpq9v0.us-east-1.rds.amazonaws.com:3306/CodaShared</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="INTRANET PROD" group="PROD" uuid="9f544606-ec74-4474-a228-7c1782115865">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql:// paradigm-production-db.c1rbwofog4zb-us-west-2.rds.amazonaws.com:3306</jdbc-url>
+    </data-source>
   </component>
 </project>
