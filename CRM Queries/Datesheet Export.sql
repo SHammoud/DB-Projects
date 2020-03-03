@@ -8,7 +8,9 @@ SELECT DD.date                                                   AS "Date",
        CU.code                                                   AS "Currency",
        DD.type                                                   AS "Status",
        DD.notes                                                  AS "Notes",
-       COALESCE(DD.tempPromoter, CONCAT(P.name, " ", P.surname)) AS "Promoter"
+       DD.ticketPrice                                            AS "Ticket Price",
+
+       COALESCE(DD.tempPromoter, CONCAT(P.name, ' ', P.surname,' (',P.email,')')) AS "Promoter"
 
 
 FROM Deal_Date DD
@@ -16,9 +18,10 @@ FROM Deal_Date DD
          LEFT JOIN Country CO ON V.country = CO.id
          LEFT JOIN Currency CU ON DD.currencyID = CU.id
          LEFT JOIN Deal D ON DD.dealID = D.id
-         LEFT JOIN Contact P ON D.promoterID = P.id
+		 LEFT JOIN Contact P ON D.promoterID = P.id
 
 
-WHERE DD.artistID = 1631
+WHERE DD.artistID = 1764
+
   AND DD.date LIKE "2020%"
 ORDER BY DD.date
