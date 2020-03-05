@@ -1,0 +1,1 @@
+CREATE USER 'user'@'host' IDENTIFIED BY 'password';
