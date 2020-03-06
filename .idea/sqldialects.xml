@@ -35,6 +35,7 @@
     <file url="file://$PROJECT_DIR$/CRM Queries/Upcoming Festival shows in a region.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Update DD split to match Artist split.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Venue Geoode.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/GCP Queries/Jack Grids.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Intranet Queries/CreateIntranet.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/Intranet Queries/Duplicate Slug Check.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Intranet Queries/Group Emails.sql" dialect="MySQL" />
