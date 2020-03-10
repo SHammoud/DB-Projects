@@ -11,6 +11,7 @@
     <file url="file://$PROJECT_DIR$/CRM Queries/Artist Splits.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Artist Team Report.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Clem Maternity.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/CRM Queries/Client Accountant Report.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Commission Totals for specified year.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Corporate Shows - This Year.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Datesheet Export.sql" dialect="MySQL" />
@@ -25,6 +26,7 @@
     <file url="file://$PROJECT_DIR$/CRM Queries/Looking at.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Management Users.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/PRS Report.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/CRM Queries/Plus Deals Report.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Promoters by Territory(EU).sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Sandy WIP.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Shows - No exchange rate set.sql" dialect="MySQL" />
@@ -41,5 +43,6 @@
     <file url="file://$PROJECT_DIR$/Intranet Queries/Group Emails.sql" dialect="MySQL" />
     <file url="file://$USER_HOME$/Documents/VM Shared/2020-02-18-02-16-32-v2_project_coda.sql" dialect="MySQL" />
     <file url="file://$USER_HOME$/Downloads/paradigm-production-db_c1rbwofog4zb_us-west-2_rds_amazonaws_com.sql" dialect="MySQL" />
+    <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>

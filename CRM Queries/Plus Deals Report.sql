@@ -1,6 +1,9 @@
+# Requested by Madie
+
 SELECT
+       CONCAT(U.name,' ',U.surname)                              AS "Agent",
+       A.name                                                    AS "Artist",
        DD.date                                                   AS "Date",
-       A.name AS 'Artist',
        COALESCE(DD.customCountry, CO.country)                    AS "Country",
        COALESCE(DD.customCity, V.city)                           AS "City",
        V.name                                                    AS "Venue",
@@ -16,7 +19,8 @@ SELECT
 
 
 FROM Deal_Date DD
-         LEFT JOIN Artist A ON DD.artistID = A.id
+         LEFT JOIN  Artist A ON DD.artistID = A.id
+         LEFT JOIN User U ON U.id = A.agentID
          LEFT JOIN Venue V ON DD.venueID = V.id
          LEFT JOIN Country CO ON V.country = CO.id
          LEFT JOIN Currency CU ON DD.currencyID = CU.id
@@ -24,7 +28,7 @@ FROM Deal_Date DD
 		 LEFT JOIN Contact P ON D.promoterID = P.id
 
 
-WHERE DD.type = 'CONTRACT'
-  AND YEAR(DD.date) = 2020
-  AND (A.agentID = 40 OR A.secondaryAgentID = 40)
-ORDER BY DD.date,A.name
+WHERE DD.dealType IN ('plusdealcross', 'plusdeal')
+
+  AND DD.date LIKE "2020%"
+ORDER BY U.name, A.name, DD.date
