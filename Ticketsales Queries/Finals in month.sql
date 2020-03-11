@@ -6,7 +6,8 @@ SELECT P.pname                            AS 'Artist',
                MAX(D.datavalue) = MIN(D.datavalue) THEN ABS(MAX(D.datavalue))
            ELSE
                ABS(MAX(D.datavalue) - MIN(D.datavalue))
-           END                            AS 'Sold'
+           END                            AS 'Sold In Feb',
+		S.final	'Finals in Feb'
 
 
 FROM data_sale_dates DSD
@@ -18,6 +19,6 @@ FROM data_sale_dates DSD
 
 # TODO UPDATE SO QUERY CAN BE EXECUTED FOR THIS MONTH OR LAST MONTH
 # You need to add UNIX times here:
-WHERE DSD.time BETWEEN 1577836800 AND 1580428800
+WHERE S.sdate BETWEEN 1580515200 AND 1583020800
 GROUP BY S.sid
 ORDER BY P.pname
