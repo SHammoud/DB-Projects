@@ -7,6 +7,7 @@ SELECT
        V.capacity                                                AS "Capacity",
        DD.budgetedCapacity                                       AS "Budgeted Capacity",
        DD.fee                                                    AS "Fee",
+	   COALESCE(ROUND(PF.amount/100,2),0)                        AS "Production Fee",
        CU.code                                                   AS "Currency",
        DD.type                                                   AS "Status",
        CONCAT(U.initials,'/',D.id)                               AS 'Deal ID',
@@ -24,6 +25,7 @@ FROM Deal_Date DD
          LEFT JOIN Currency CU ON DD.currencyID = CU.id
          LEFT JOIN Deal D ON DD.dealID = D.id
 		 LEFT JOIN Contact P ON D.promoterID = P.id
+		 LEFT JOIN (SELECT showID, category, SUM(amount) AS 'amount' FROM Contract_Extra WHERE category LIKE 'production_fee' GROUP BY showID) PF ON PF.showID = DD.id
 
 
 WHERE DD.type = 'CONTRACT'
