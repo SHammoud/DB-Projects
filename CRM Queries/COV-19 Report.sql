@@ -34,6 +34,6 @@ FROM Deal_Date DD
 		 LEFT JOIN (SELECT showID, category, SUM(amount) AS 'amount' FROM Contract_Extra WHERE category LIKE 'production_fee' GROUP BY showID) PF ON PF.showID = DD.id
 
 
-WHERE DD.notes LIKE '%Coronavirus%'
+WHERE (DD.notes LIKE '%Coronavirus%' OR DD.priceNotes LIKE '%Coronavirus%')
 
 ORDER BY DD.date,A.name

@@ -45,6 +45,9 @@
       <remarks>Maria DB - Ubuntu</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://192.168.73.100:3306</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="UTC" />
+      </driver-properties>
     </data-source>
     <data-source source="LOCAL" name="GCP CLOUD STAG" group="PROD" uuid="7b504c5a-0f47-4461-a7bc-9e1d06b9d780">
       <driver-ref>mysql.8</driver-ref>
