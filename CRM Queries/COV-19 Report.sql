@@ -1,4 +1,5 @@
 SELECT
+       CONCAT(U.name,' ',U.surname)                               AS "Agent",
        DD.date                                                   AS "Date",
        A.name                                                    AS "Artist",
        COALESCE(DD.customCountry, CO.country)                    AS "Country",
@@ -17,6 +18,9 @@ SELECT
            WHEN DD.notes LIKE '%Coronavirus cancel%' THEN CONCAT('Coronavirus Cancellation')
            WHEN DD.notes LIKE '%Coronavirus Reschedule%' THEN CONCAT('Coronavirus Reschedule')
            WHEN DD.notes LIKE '%Coronavirus Impacted%' THEN CONCAT('Coronavirus Impacted')
+           WHEN DD.priceNotes LIKE '%Coronavirus cancel%' THEN CONCAT('Coronavirus Cancellation')
+           WHEN DD.priceNotes LIKE '%Coronavirus Reschedule%' THEN CONCAT('Coronavirus Reschedule')
+           WHEN DD.priceNotes LIKE '%Coronavirus Impacted%' THEN CONCAT('Coronavirus Impacted')
         END AS 'COV-19 Status',
        COALESCE(DD.tempPromoter, CONCAT(P.name, ' ', P.surname,' (',P.email,')')) AS "Promoter",
        DD.ticketPrice                                            AS "Ticket Price",
@@ -35,5 +39,5 @@ FROM Deal_Date DD
 
 
 WHERE (DD.notes LIKE '%Coronavirus%' OR DD.priceNotes LIKE '%Coronavirus%')
-
+GROUP BY DD.id
 ORDER BY DD.date,A.name
