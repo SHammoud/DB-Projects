@@ -1,0 +1,36 @@
+ALL SUMS PAYABLE TO THE ARTIST / COMPANY MUST BE PAID IN U.S. DOLLARS AND RECEIVED IN CLEARED FUNDS BY THE DATES SPECIFIED.<br>
+    <table cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <td style="padding: 0;"><strong>Bank Name:</strong></td>
+          <td style="padding: 0;" class="ng-binding"> &nbsp; Coutts</td>
+        </tr>
+        <tr>
+          <td style="padding: 0;"><strong>Bank Address:</strong></td>
+          <td style="padding: 0;" class="ng-binding"> &nbsp; 440 Strand, London, WC2R 0QS </td>
+        </tr>
+        <tr>
+          <td style="padding: 0;"><strong>Account Name:</strong></td>
+          <td style="padding: 0;" class="ng-binding"> &nbsp; Paradigm Agency Limited</td>
+        </tr>
+        <tr>
+          <td style="padding: 0;"><strong>Account Number:</strong></td>
+          <td style="padding: 0;" class="ng-binding"> &nbsp; 09491872</td>
+        </tr>
+        <tr>
+          <td style="padding: 0;"><strong>Sort Code:</strong></td>
+          <td style="padding: 0;" class="ng-binding"> &nbsp; 18-00-91</td>
+        </tr>
+        <tr>
+          <td style="padding: 0;"><strong>IBAN Number:</strong></td>
+          <td style="padding: 0;" class="ng-binding"> &nbsp; GB52 COUT 1800 9109 4918 72</td>
+        </tr>
+        <tr>
+          <td style="padding: 0;"><strong>SWIFT / BIC:</strong></td>
+          <td style="padding: 0;" class="ng-binding"> &nbsp; COUTGB22</td>
+        </tr>
+      </tbody>
+    </table>
+    <b class="ng-binding">NB: The Promoter must advise their bank that funds are to be paid in the currency designated in this Agreement and not
+      converted by an intermediate or remitting bank.</b>
+    <!-- ngIf: contractSubtype !== 'LIVENATION' --><p ng-if="contractSubtype !== 'LIVENATION'" class="ng-scope">All deposit payments shall be non-returnable save as expressly provided for to the contrary in this Agreement.</p>

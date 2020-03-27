@@ -16,15 +16,17 @@ SELECT
        CONCAT(U.initials,'/',D.id)                               AS 'Deal ID',
        CASE
            WHEN DD.notes LIKE '%Coronavirus cancel%' THEN CONCAT('Coronavirus Cancellation')
-           WHEN DD.notes LIKE '%Coronavirus Reschedule%' THEN CONCAT('Coronavirus Reschedule')
+           WHEN DD.notes LIKE '%Coronavirus%Reschedul%' THEN CONCAT('Coronavirus Reschedule')
            WHEN DD.notes LIKE '%Coronavirus Impacted%' THEN CONCAT('Coronavirus Impacted')
            WHEN DD.priceNotes LIKE '%Coronavirus cancel%' THEN CONCAT('Coronavirus Cancellation')
-           WHEN DD.priceNotes LIKE '%Coronavirus Reschedule%' THEN CONCAT('Coronavirus Reschedule')
+           WHEN DD.priceNotes LIKE '%Coronavirus Reschedul%' THEN CONCAT('Coronavirus Reschedule')
            WHEN DD.priceNotes LIKE '%Coronavirus Impacted%' THEN CONCAT('Coronavirus Impacted')
         END AS 'COV-19 Status',
        COALESCE(DD.tempPromoter, CONCAT(P.name, ' ', P.surname,' (',P.email,')')) AS "Promoter",
        DD.ticketPrice                                            AS "Ticket Price",
-       DD.notes                                                  AS "Notes"
+       DD.notes                                                AS "Notes",
+	   IF(DD.cancelled , 'Yes', 'No')                                         AS "Show Cancelled",
+	   IF(D.cancelled , 'Yes', 'No')                                           AS "Deal Cancelled"
 
 
 FROM Deal_Date DD
@@ -38,6 +40,7 @@ FROM Deal_Date DD
 		 LEFT JOIN (SELECT showID, category, SUM(amount) AS 'amount' FROM Contract_Extra WHERE category LIKE 'production_fee' GROUP BY showID) PF ON PF.showID = DD.id
 
 
-WHERE (DD.notes LIKE '%Coronavirus%' OR DD.priceNotes LIKE '%Coronavirus%')
+WHERE (DD.notes LIKE '%Coronavirus%' OR DD.priceNotes LIKE '%Coronavirus%' OR DD.notes LIKE '%cancel%' OR DD.priceNotes LIKE '%cancel%' )
+AND YEAR(DD.date) > 2019
 GROUP BY DD.id
 ORDER BY DD.date,A.name
