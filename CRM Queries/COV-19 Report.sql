@@ -42,5 +42,5 @@ FROM Deal_Date DD
 
 WHERE (DD.notes LIKE '%Coronavirus%' OR DD.priceNotes LIKE '%Coronavirus%' OR DD.notes LIKE '%cancel%' OR DD.priceNotes LIKE '%cancel%' )
 AND YEAR(DD.date) > 2019
-GROUP BY DD.id
+GROUP BY D.id
 ORDER BY DD.date,A.name

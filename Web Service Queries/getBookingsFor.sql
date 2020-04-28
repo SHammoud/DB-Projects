@@ -106,8 +106,7 @@ SELECT
 # ADD ARTIST ID HERE
 # IN THE WHERE STATEMENT
 # BELOW
-    	WHERE D.artistID = 1713
-            AND D.draft != 1
+    	WHERE D.draft != 1
             AND D.isComplete != 1
             AND ( D.cancelled != 1 OR (D.cancelled = 1 AND (CFDD.fee IS NOT NULL OR CFD.fee IS NOT NULL)))
             AND ( B.cancelled != 1 OR (B.cancelled = 1 AND (CFDD.fee IS NOT NULL OR CFD.fee IS NOT NULL)))

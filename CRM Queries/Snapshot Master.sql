@@ -1,5 +1,5 @@
-SET @snapDate := '2019-12-31';
-SET @reportYear := 2019;
+SET @snapDate := '2020-01-01';
+SET @reportYear := 2020;
 SELECT CONCAT(U.name, ' ', U.surname)                                                      AS 'Agent',
 
        MAX(CASE WHEN SMR.month = '1' THEN NULLIF(FORMAT(SMR.gross_commission, 0), 0) END)  AS 'January',
