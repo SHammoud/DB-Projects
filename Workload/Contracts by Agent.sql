@@ -17,7 +17,7 @@ FROM
     Deal D
     LEFT JOIN User U ON D.userID = U.id
 WHERE
-    DATE_FORMAT(D.firstDate, "%Y") = 2020
+    DATE_FORMAT(D.firstDate, "%Y") = 2018
     AND U.id NOT IN ('745', '2132')
     AND U.usertypeID = 87
 	AND D.cancelled = 0

@@ -13,7 +13,7 @@ LEFT JOIN Territory T ON C.territoryID = T.id
 
 WHERE F.deleted_at IS NULL
 AND T.name = 'Europe'
-AND DATE_FORMAT(COALESCE(F.nextStartDate,F.startDate,FP.startDate), '%m-%d') BETWEEN '08-01' AND '09-30'
+AND DATE_FORMAT(COALESCE(F.nextStartDate,F.startDate,FP.startDate), '%m-%d') BETWEEN '07-01' AND '08-15'
 
 GROUP BY F.id
 ORDER BY  DATE_FORMAT(COALESCE(F.nextStartDate,F.startDate,FP.startDate), '%m-%d')
