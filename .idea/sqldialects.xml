@@ -13,7 +13,7 @@
     <file url="file://$PROJECT_DIR$/CRM Queries/Clem Maternity.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Client Accountant Report.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Commission Totals for specified year.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/CRM Queries/Corporate Shows - This Year.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/CRM Queries/Corporate Shows.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Datesheet Export.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Delete Production Contract.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/FEU - Madie.sql" dialect="MySQL" />

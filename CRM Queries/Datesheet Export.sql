@@ -8,7 +8,10 @@ SELECT
        DD.budgetedCapacity                                       AS "Budgeted Capacity",
        DD.fee                                                    AS "Fee",
        CU.code                                                   AS "Currency",
-       DD.type                                                   AS "Status",
+       CASE
+            WHEN DD.type ='DEALMEMO' THEN 'DRAFT'
+            ELSE DD.type
+        END                                                      AS "Status",
        DD.notes                                                  AS "Notes",
        DD.ticketPrice                                            AS "Ticket Price",
 
@@ -24,7 +27,7 @@ FROM Deal_Date DD
 		 LEFT JOIN Contact P ON D.promoterID = P.id
 
 
-WHERE DD.type = 'CONTRACT'
-  AND YEAR(DD.date) = 2020
-  AND (A.agentID = 40 OR A.secondaryAgentID = 40)
+WHERE YEAR(DD.date) > 2020
+  AND DD.artistID NOT IN (1764)
+  AND (A.agentID = 1330 OR A.secondaryAgentID = 1330)
 ORDER BY DD.date,A.name

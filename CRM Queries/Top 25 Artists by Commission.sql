@@ -9,7 +9,7 @@ WHERE
 	SA.date = '2019-12-31'
 # Set year you want data for
 AND SA.year= '2019'
-AND A.country = 223
+
 
 GROUP BY
 	A.id
