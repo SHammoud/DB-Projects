@@ -47,8 +47,7 @@ LEFT JOIN Cancellation_Fee DCF ON DCF.dealID = DD.dealID
 
 WHERE
 D.id IS NOT NULL
-AND YEAR(DD.date) = 2019
-AND PA.id NOT IN (1030,2132)
+AND YEAR(DD.date) = 2021
 AND D.cancelled = 0
 
 UNION
@@ -107,7 +106,6 @@ LEFT JOIN Cancellation_Fee DCF ON DCF.dealID = DD.dealID
 
 WHERE
 D.id IS NOT NULL
-AND YEAR(DD.date) = 2019
-AND PA.id NOT IN (1030,2132)
+AND YEAR(DD.date) = 2021
 AND D.cancelled = 1
 GROUP BY DD.id

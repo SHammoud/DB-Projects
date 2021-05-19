@@ -67,5 +67,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://paradigm-production-db.c1rbwofog4zb.us-west-2.rds.amazonaws.com:3306/paradigm</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="GCP Jack" group="TEST" uuid="9872c0d7-8df5-4630-a8df-273a38be772d">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://jack-stagingdb.cwhmzlrpq9v0.us-east-1.rds.amazonaws.com:3306/CLOUD_STAGING</jdbc-url>
+    </data-source>
   </component>
 </project>

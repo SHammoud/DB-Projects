@@ -1,5 +1,5 @@
 SELECT
-        DATE_FORMAT(AL.created_at, '%Y-%m-%d') AS 'Date',
+#         DATE_FORMAT(AL.created_at, '%Y-%m-%d') AS 'Date',
 		CONCAT(U.name,' ',U.surname) AS'User',
         UT.usertype AS 'Role',
        CASE
@@ -11,5 +11,8 @@ SELECT
 FROM Activity_Log AL
 LEFT JOIN User U ON AL.userID = U.id
 LEFT JOIN Website_Usertype UT ON U.usertypeID = UT.id
-WHERE DATE_FORMAT(AL.created_at,'%Y-%m-%d') BETWEEN '2020-03-30' AND '2020-04-05'
-GROUP BY Date, U.name, AL.type
+WHERE DATE_FORMAT(AL.created_at,'%Y-%m-%d') BETWEEN '2021-04-01' AND '2021-04-30'
+
+# GROUP BY Date, U.name, AL.type
+GROUP BY U.id, AL.type
+ORDER BY User

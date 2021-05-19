@@ -12,4 +12,5 @@ WHERE CM.id IS NOT NULL
   AND CMA.agencies_id = 2
   AND CMU.roles_id = 1
 GROUP BY CM.id
+HAVING Agents LIKE '%,%'
 
