@@ -20,7 +20,4 @@ LEFT JOIN Country CO ON V.country = CO.id
 LEFT JOIN Contact P ON D.promoterID = P.id
 LEFT JOIN Currency CX on DD.currencyID = CX.id
 
-WHERE DD.userID = 1624
-AND YEAR(DD.date) = 2021
-AND DD.fee > 0
-ORDER BY DD.date
+WHERE DD.artistID IN (1831) AND DD.date > "2021-06-01" AND DD.fee > 0
