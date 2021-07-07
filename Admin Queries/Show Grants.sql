@@ -1,1 +1,1 @@
-SHOW GRANTS for 'user'@'host';
+SHOW GRANTS for 'Helium'@'%';

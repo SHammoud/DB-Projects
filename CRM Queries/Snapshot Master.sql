@@ -1,4 +1,4 @@
-SET @snapDate := '2019-03-03';
+SET @snapDate := '2019-07-01';
 SET @reportYear := 2020;
 SELECT CONCAT(U.name, ' ', U.surname)                                                      AS 'Agent',
 
