@@ -1,5 +1,6 @@
 SELECT
        CM.name                                AS 'Artist',
+       CM.spotify                             AS 'Spotify URL',
 	   GROUP_CONCAT(CONCAT(U.first_name,' ',U.last_name) SEPARATOR ', ') AS 'Agents'
 
 FROM clients_music CM
@@ -11,5 +12,6 @@ WHERE CM.id IS NOT NULL
   AND CM.inactive_date IS NULL
   AND CMA.agencies_id = 2
   AND CMU.roles_id = 1
+  AND U.agencies_id = 2
 GROUP BY CM.id
 
