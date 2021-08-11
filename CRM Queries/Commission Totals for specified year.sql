@@ -23,4 +23,3 @@ FROM Deal_Date DD
 WHERE DD.date BETWEEN  '2021-01-01' AND '2021-03-31'
   AND (COALESCE(D.cancelled, 0) + DD.cancelled = 0)
   AND DD.type = 'CONTRACT'
-
