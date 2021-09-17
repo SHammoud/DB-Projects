@@ -21,8 +21,9 @@ SELECT
 #        C.country                                                                  AS 'Country',
 #        T.name                                                                     AS 'Territory',
        CX.code                                                                    AS 'Currency',
-       CASE WHEN DD.cancelled + D.cancelled > 0 THEN COALESCE(DDCF.fee, DCF.fee, '0') + COALESCE(ROUND(OV.amount / 100, 2),'0')
+       CASE WHEN DD.cancelled + D.cancelled > 0 THEN COALESCE(DDCF.fee, DCF.fee, '0')
             ELSE DD.fee + COALESCE(ROUND(OV.amount / 100, 2),'0')
+
        END                                                                        AS 'Fee',
        COALESCE(DD.commissionRate, A.commissionRate) / 100                        AS 'Commission Rate',
        COALESCE(DD.exchangeRate,CX.rate)                                               AS 'Exchange Rate',
