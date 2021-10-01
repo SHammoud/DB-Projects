@@ -1,39 +1,45 @@
 SELECT
-       DD.date                                                                    AS 'Show Date',
+       DD.date                                                                    AS 'Date',
        A.name                                                                     AS 'Artist',
-       CONCAT(U.initials, '/', DD.dealID)                                         AS 'Contract Number',
+       CONCAT(P.name,' ',P.surname,' (',P.companyName,')')                        AS 'Promoter',
+       CONCAT(U.initials, '/', DD.dealID)                                         AS 'Contract',
+#        CASE
+#            WHEN V.name LIKE 'Brand%' THEN 'BRAND PARTNERSHIP'
+#            WHEN D.contractType = 'CORPORATE' THEN 'CORPORATE'
+#            WHEN D.contractType = 'BRANDPARTNERSHIP' THEN 'BRAND PARTNERSHIP'
+#            ELSE 'STANDARD' END                                                    AS 'Type',
        CASE
-           WHEN V.name LIKE 'Brand%' THEN 'BRAND PARTNERSHIP'
-           WHEN D.contractType = 'CORPORATE' THEN 'CORPORATE'
-           WHEN D.contractType = 'BRANDPARTNERSHIP' THEN 'BRAND PARTNERSHIP'
-           ELSE 'STANDARD' END                                                    AS 'Type',
-       CASE
-       WHEN DD.cvStatus = 'PRESUMED_CANCELLATION' THEN 'PRESUMED CANCELLED'
-       WHEN DD.cvStatus = 'RESCHEDULE' THEN 'RESCHEDULE'
-       WHEN DD.cvStatus = 'SUCCESSFULLY_RESCHEDULED' THEN 'SUCCESSFULLY RESCHEDULED'
-       WHEN DD.cvStatus = 'RESCHEDULE_TBC' THEN 'RESCHEDULE TBC'
-       END                                                                        AS 'CV Status',
+           WHEN DD.cancelled + D.cancelled > 0 THEN 'YES'
+           ELSE 'NO'
+       END                                                                        AS 'Cancelled',
        V.name                                                                     AS 'Venue',
-       CASE
-           WHEN V.isFestival THEN 'YES'
-           WHEN D.contractType = 'FESTIVAL' THEN 'YES'
-           ELSE 'NO' END                                                          AS 'Festival',
-       V.city                                                                     AS 'City',
-       C.country                                                                  AS 'Country',
-       T.name                                                                     AS 'Territory',
+#        CASE
+#            WHEN V.isFestival THEN 'YES'
+#            WHEN D.contractType = 'FESTIVAL' THEN 'YES'
+#            ELSE 'NO' END                                                          AS 'Festival',
+#        V.city                                                                     AS 'City',
+#        C.country                                                                  AS 'Country',
+#        T.name                                                                     AS 'Territory',
        CX.code                                                                    AS 'Currency',
-       COALESCE(DDCF.fee, DCF.fee, DD.fee)                                        AS 'Fee',
-       ROUND(OV.amount / 100, 2)                                                  AS 'Commissionable_Extras',
+       CASE WHEN DD.cancelled + D.cancelled > 0 THEN ROUND(COALESCE(DDCF.fee, DCF.fee, NULL),2)
+            ELSE DD.fee + COALESCE(ROUND(OV.amount / 100, 2),'0')
+
+       END                                                                        AS 'Fee',
        COALESCE(DD.commissionRate, A.commissionRate) / 100                        AS 'Commission Rate',
-       COALESCE(DD.exchangeRate, 1)                                               AS 'Exchange Rate',
-       ROUND((COALESCE(DDCF.fee, DCF.fee, DD.fee) + COALESCE((OV.amount / 100),0)) / COALESCE(DD.exchangeRate, 1)      ,2) AS 'Total Fee GBP',
-       ROUND((((COALESCE(DDCF.fee, DCF.fee, DD.fee) + COALESCE((OV.amount / 100),0)) * COALESCE(DD.commissionRate, A.commissionRate) / 100)) / COALESCE(DD.exchangeRate, 1)      ,2) AS 'Total Commision GBP'
+       COALESCE(DD.exchangeRate,CX.rate)                                               AS 'Exchange Rate',
+       CASE WHEN DD.cancelled + D.cancelled > 0 THEN ROUND((COALESCE(DDCF.fee, DCF.fee,'0'))  / COALESCE(DD.exchangeRate, CX.rate)      ,2)
+            ELSE ROUND((COALESCE(DD.fee) + COALESCE((OV.amount / 100),0)) / COALESCE(DD.exchangeRate, CX.rate)      ,2)
+       END AS 'Total Fee GBP',
+       CASE WHEN DD.cancelled + D.cancelled > 0 THEN ROUND((((COALESCE(DDCF.fee, DCF.fee,'0')) * COALESCE(DD.commissionRate, A.commissionRate) / 100)) / COALESCE(DD.exchangeRate, CX.rate)      ,2)
+           ELSE ROUND((((COALESCE(DD.fee) + COALESCE((OV.amount / 100),0)) * COALESCE(DD.commissionRate, A.commissionRate) / 100)) / COALESCE(DD.exchangeRate, CX.rate)      ,2)
+          END AS 'Total Commision GBP'
 
 FROM Deal_Date DD
          LEFT JOIN Deal D ON D.id = DD.dealID
          LEFT JOIN Cancellation_Fee DCF ON DCF.dealID = DD.dealID
          LEFT JOIN Cancellation_Fee DDCF ON DDCF.dealDateID = DD.id
          LEFT JOIN Artist A ON DD.artistID = A.id
+         LEFT JOIN Contact P ON D.promoterID = P.id
          LEFT JOIN Venue V ON V.id = DD.venueID
          LEFT JOIN Country C ON C.id = V.country
          LEFT JOIN Country AC ON A.country = AC.id
@@ -44,8 +50,7 @@ FROM Deal_Date DD
                     FROM Contract_Extra
                     WHERE TYPE LIKE 'above_line'
                     GROUP BY showID) OV ON OV.showID = DD.id
-WHERE DD.date BETWEEN "2020-10-19" AND "2020-10-25"
-  AND DD.fee > 0
-  AND DD.cancelled = 0
-  AND D.cancelled = 0
+WHERE DD.date BETWEEN DATE_SUB(NOW(), INTERVAL 12 DAY) AND DATE_SUB(NOW(), INTERVAL 5 DAY)
+AND DD.dealID IS NOT NULL
+HAVING Fee IS NOT NULL
 ORDER BY DD.date
