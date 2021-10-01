@@ -35,6 +35,6 @@ LEFT JOIN Country CO on A.country = CO.id
 
 WHERE P.dateReceived BETWEEN '2019-04-06' AND '2020-04-05'
 AND P.transferType = 'transfer'
-AND A.name IN ('Tom Odell','Liam Gallagher','Andy C','Disclosure')
+# AND A.name IN ('Tom Odell','Liam Gallagher','Andy C','Disclosure')
 # GROUP BY A.id, CX.id
 GROUP BY DD.id

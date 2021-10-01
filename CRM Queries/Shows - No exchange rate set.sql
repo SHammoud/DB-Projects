@@ -13,8 +13,7 @@ FROM Deal_Date DD
 
 WHERE DD.dealID IS NOT NULL
   AND DD.fee > 0
-  AND DD.date LIKE "%2019%"
-  AND DD.currencyID != "1"
-  AND D.cancelled = 0
+  AND DD.date > CURRENT_DATE()
+  AND (COALESCE(D.cancelled, 0) + DD.cancelled = 0)
   AND DD.exchangeRate IS NULL
 ORDER BY A.name, DD.date
