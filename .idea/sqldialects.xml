@@ -21,6 +21,7 @@
     <file url="file://$PROJECT_DIR$/CRM Queries/Festival Report - Madie.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Festivals with schedule info.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Find NULL split rates.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/CRM Queries/Gamal Artist Report With Nationality.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Gamal Artist Report.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/London Shows - 14 days.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Looking at.sql" dialect="MySQL" />
@@ -41,6 +42,7 @@
     <file url="file://$PROJECT_DIR$/Intranet Queries/CreateIntranet.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/Intranet Queries/Duplicate Slug Check.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Intranet Queries/Group Emails.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Intranet Queries/UK Roster.sql" dialect="MySQL" />
     <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>

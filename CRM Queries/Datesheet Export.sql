@@ -27,7 +27,7 @@ FROM Deal_Date DD
 		 LEFT JOIN Contact P ON D.promoterID = P.id
 
 
-WHERE YEAR(DD.date) > 2020
+WHERE YEAR(DD.date) = 2022
   AND DD.artistID NOT IN (1764)
-  AND (A.agentID = 1330 OR A.secondaryAgentID = 1330)
+#   AND (A.agentID = 1330 OR A.secondaryAgentID = 1330)
 ORDER BY DD.date,A.name

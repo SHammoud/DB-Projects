@@ -7,9 +7,10 @@ LEFT JOIN clients_music_users CMU ON CM.id = CMU.clients_music_id
 LEFT JOIN users U ON CMU.users_id = U.id
 LEFT JOIN clients_music_agencies CMA ON CM.id = CMA.clients_music_id
 WHERE CM.id IS NOT NULL
-	AND CM.created_at BETWEEN '2020-01-01' AND CURRENT_DATE
+	AND CM.created_at BETWEEN '2021-01-01' AND '2021-12-31'
 #   AND CM.deleted_at IS NULL
 #   AND CM.inactive_date IS NULL
   AND CMA.agencies_id = 2
   AND CMU.roles_id = 1
+  AND U.agencies_id = 2
 GROUP BY CM.id

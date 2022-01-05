@@ -1,16 +1,10 @@
-# Requested by James Whitting for a mailshot
-# 11/06/20
-
 SELECT
 COUNT(*) AS "Shows",
 MAX(DD.date) AS "Last",
 C.name AS "Name",
 C.surname AS "Surname",
 C.email AS "Email",
-V.name AS "Venue",
-CO.country AS "Country",
-MAX(DD.fee)/CU.rate AS "Fee"
-
+MAX(DD.worth)/CU.rate AS "Fee"
 
 FROM Contact C
 LEFT JOIN Deal D ON C.id = D.promoterID
@@ -22,9 +16,13 @@ LEFT JOIN Currency CU ON DD.currencyID = CU.id
 
 WHERE DD.dealID IS NOT NULL
 AND C.disabled IS NULL
-AND C.name NOT IN ("Test", "PT")
-AND (V.name LIKE "%Fest%" OR D.contractType LIKE "FESTIVAL")
+AND DD.isCorporate = 0
+# AND C.country = 223
 AND T.name IN ('United Kingdom','Europe')
+AND C.name NOT REGEXP 'test|PT|and|/|AEG|behalf|\\(|C.O|/'
+AND C.surname NOT REGEXP 'not use|and|behalf|\\(|/'
+AND C.email NOT REGEXP 'paradigmagency.com|codaagency.com|accounts|info|contracts'
+AND (COALESCE(D.cancelled, 0) + DD.cancelled = 0)
 GROUP BY C.email
-HAVING Shows > 0 AND Fee > "1000" AND Last > "2018"
-ORDER BY Shows DESC
+HAVING Shows > 0 AND Fee > "25000" AND Last > "2018"
+ORDER BY Fee DESC

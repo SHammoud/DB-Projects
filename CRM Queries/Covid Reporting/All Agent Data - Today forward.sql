@@ -56,9 +56,9 @@ FROM Deal_Date DD
 
 WHERE DD.type NOT IN ('OFFER_REJECTED')
   AND DD.fee > 0
-  AND DD.date BETWEEN '2021-01-01' AND '2021-03-31'
+  AND DD.date BETWEEN CURRENT_DATE() AND '2022-04-31'
   AND (COALESCE(D.cancelled, 0) + DD.cancelled = 0)
-
+  AND DD.userID = 42
 GROUP BY DD.id
 
 ORDER BY Date, Artist

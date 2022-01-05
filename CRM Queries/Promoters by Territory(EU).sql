@@ -11,7 +11,7 @@ C.name AS "Name",
 C.surname AS "Surname",
 C.email AS "Email",
 CO.country AS "Country",
-DD.fee/CU.rate AS "Fee"
+MAX(DD.fee)/CU.rate AS "Fee"
 
 FROM Contact C
 LEFT JOIN Deal D ON C.id = D.promoterID
@@ -21,12 +21,14 @@ LEFT JOIN Country CO ON V.country = CO.id
 LEFT JOIN Currency CU ON DD.currencyID = CU.id
 
 WHERE DD.dealID IS NOT NULL
-AND CO.region IN ("Europe")
-AND CO.country NOT IN ("United Kingdom")
+# AND CO.region IN ("Europe")
+# AND CO.country NOT IN ("United Kingdom")
 AND C.disabled IS NULL
 AND C.name NOT IN ("Test", "PT")
-AND DD.date > "2015"
+AND DD.date > "2018"
+AND DD.isCorporate = 0
+AND D.contractType != 'BRANDPARTNERSHIP'
 
-GROUP BY C.id
-HAVING Shows > 1 AND Fee BETWEEN "5000" AND "15000"
-ORDER BY Shows DESC
+GROUP BY C.id,C.email
+HAVING Shows > 1 AND Fee > "5000"
+ORDER BY Fee DESC

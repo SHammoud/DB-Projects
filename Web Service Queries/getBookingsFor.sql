@@ -107,6 +107,7 @@ SELECT
 # IN THE WHERE STATEMENT
 # BELOW
     	WHERE D.draft != 1
+    	    AND A.id = 2801
             AND D.isComplete != 1
             AND ( D.cancelled != 1 OR (D.cancelled = 1 AND (CFDD.fee IS NOT NULL OR CFD.fee IS NOT NULL)))
             AND ( B.cancelled != 1 OR (B.cancelled = 1 AND (CFDD.fee IS NOT NULL OR CFD.fee IS NOT NULL)))
