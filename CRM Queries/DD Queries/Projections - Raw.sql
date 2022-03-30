@@ -47,7 +47,7 @@ LEFT JOIN Cancellation_Fee DCF ON DCF.dealID = DD.dealID
 
 WHERE
 D.id IS NOT NULL
-AND YEAR(DD.date) > 2017
+AND YEAR(DD.date) > 2019
 AND D.cancelled = 0
 
 UNION
@@ -99,13 +99,13 @@ LEFT JOIN Cancellation_Fee DCF ON DCF.dealID = DD.dealID
 	LEFT JOIN (SELECT DD2.dealID, count(*) AS 'ShowCount'
 	FROM Deal_Date DD2
 	WHERE
-	YEAR(DD2.date) > 2017
+	YEAR(DD2.date) = 2019
 	GROUP BY DD2.dealID) SD ON SD.dealID = DD.dealID
 
 
 
 WHERE
 D.id IS NOT NULL
-AND YEAR(DD.date) > 2017
+AND YEAR(DD.date) = 2019
 AND D.cancelled = 1
 GROUP BY DD.id

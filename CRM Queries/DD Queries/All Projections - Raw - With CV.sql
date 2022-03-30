@@ -1,5 +1,10 @@
 SELECT
        DD.date AS 'Show Date',
+       CASE
+           WHEN DD.type IN ('PENDING', 'PENCIL1', 'PENCIL2', 'PENCIL3', 'OTHER', '') THEN CONCAT('Pending')
+           WHEN DD.type = 'CONFIRMED' THEN CONCAT('Confirmed')
+           ELSE CONCAT('Contract')
+      END AS 'Status',
        CONCAT(PA.initials,'/',DD.dealID) 'Deal ID',
        A.name 'Artist',
        V.name 'Venue',
@@ -8,9 +13,8 @@ SELECT
        CX.code AS 'Currency',
        DD.worth AS 'Total Fee',
        (DD.worth/COALESCE(DD.exchangeRate,CX.rate)) AS 'Total Fee In GBP',
-       (DD.worth*(COALESCE(DD.commissionRate,A.commissionRate)/100)/COALESCE(DD.exchangeRate,CX.rate)) AS 'Total Commission In GBP'
-       
-
+       (DD.worth*(COALESCE(DD.commissionRate,A.commissionRate)/100)/COALESCE(DD.exchangeRate,CX.rate)) AS 'Total Commission In GBP',
+       IFNULL(D.cancelled,0) AS 'Cancelled'
 FROM Deal_Date DD
 
 
@@ -20,7 +24,7 @@ LEFT JOIN Country CO ON V.country = CO.id
 LEFT JOIN  Currency CX ON DD.currencyId = CX.id
 LEFT JOIN Artist A ON DD.artistID = A.id
 LEFT JOIN User PA ON DD.userID = PA.id
-# LEFT JOIN Cancellation_Fee DCF ON DCF.dealID = DD.dealID
+LEFT JOIN Deal D on DD.dealID = D.id
 
 # 	LEFT JOIN (SELECT showID, category, SUM(amount) AS "amount"
 # 	FROM Contract_Extra
@@ -32,7 +36,10 @@ LEFT JOIN User PA ON DD.userID = PA.id
 
 WHERE
 YEAR(DD.date) = 2022
+AND MONTHNAME(DD.date) ='March'
 AND DD.type NOT IN ('OFFER_REJECTED')
+AND DD.cancelled = 0
+GROUP BY DD.id
 
 # UNION
 #

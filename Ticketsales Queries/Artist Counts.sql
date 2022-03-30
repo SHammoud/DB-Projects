@@ -16,7 +16,7 @@ FROM shows S
 	
 # TODO UPDATE SO QUERY CAN BE EXECUTED FOR THIS MONTH OR LAST MONTH
 # You need to add UNIX times here:
-WHERE P.pname LIKE '%Bon Iver%'
+WHERE P.pname LIKE '%Superorganism%'
 AND D.datavalue != 'No data'
 GROUP BY S.sid
 ORDER BY S.sdate

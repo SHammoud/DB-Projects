@@ -33,7 +33,7 @@ LEFT JOIN Artist A on DD.artistID = A.id
 LEFT JOIN Venue V on DD.venueID = V.id
 LEFT JOIN Country CO on A.country = CO.id
 
-WHERE P.dateReceived BETWEEN '2019-04-06' AND '2020-04-05'
+WHERE P.dateReceived BETWEEN '2020-04-06' AND '2021-04-05'
 AND P.transferType = 'transfer'
 # AND A.name IN ('Tom Odell','Liam Gallagher','Andy C','Disclosure')
 # GROUP BY A.id, CX.id
