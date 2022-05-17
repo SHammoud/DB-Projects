@@ -2,45 +2,24 @@ SELECT
        CONCAT(U.name,' ',U.surname) AS 'Agent',
        CONCAT(U.initials,'/',D.id) 'Deal ID',
        DD.date AS 'Show Date',
-       A.name 'Artist',
-       V.name 'Venue',
-       V.city 'City',
-       CO.country 'Country',
+       A.name AS 'Artist',
+       V.name AS 'Venue',
+       V.city AS 'City',
+       CO.country AS 'Country',
        CX.code AS 'Currency',
        CASE
            WHEN DD.cancelled + D.cancelled > 0 THEN IFNULL(DCF.fee,0) + IFNULL(DDCF.fee,0)
            ELSE DD.worth+(IFNULL(OV.amount,0)/100)
         END AS 'Total Fee',
 
-      CASE
-           WHEN DD.cancelled + D.cancelled > 0 THEN (IFNULL(DCF.fee,0) + IFNULL(DDCF.fee,0))/COALESCE(DD.exchangeRate,CX.rate)
-           ELSE ((DD.worth+(IFNULL(OV.amount,0)/100))/COALESCE(DD.exchangeRate,CX.rate))
-      END AS 'Total Fee In GBP',
-      CASE
-           WHEN DD.cancelled + D.cancelled > 0 THEN  ((IFNULL(DCF.fee,0) + IFNULL(DDCF.fee,0))*(COALESCE(DD.commissionRate,A.commissionRate)/100))/COALESCE(DD.exchangeRate,CX.rate)
-           ELSE ((DD.worth+(IFNULL(OV.amount,0)/100))*(COALESCE(DD.commissionRate,A.commissionRate)/100)/COALESCE(DD.exchangeRate,CX.rate))
-      END AS 'Total Commission In GBP',
-
 
 #        DATE_FORMAT(BT.entryDate,'%Y-%m-%d') AS 'Transaction Date',
 # 	  GROUP_CONCAT(BT.receiptNo SEPARATOR ' ') AS 'Receipt No',
        SUM( P.amount) 'Received',
 #        GROUP_CONCAT(P.id),
-       DD.cvStatus AS 'CV Status',
        D.cancelled 'Deal Cancelled',
        DD.cancelled 'Show Cancelled',
-       D.isComplete 'Contract Completed',
-        CASE
-           WHEN ACX.code = CX.code  THEN SUM(DISTINCT PA.amount/100)
-           WHEN SUM(DISTINCT PA.amount/100) IS NULL THEN SUM( PA.amount)
-           ELSE ROUND(SUM(DISTINCT (PA.amount/PA.currencyExchangeRate)/100),2)
-        END  AS 'Paid to Artist',
-       ACX.code AS 'Statement Currency',
-        CASE
-           WHEN ACX.code = CX.code  THEN CONCAT('YES')
-           WHEN SUM(DISTINCT PA.amount/100) IS NULL THEN CONCAT(NULL)
-           ELSE CONCAT('NO')
-        END  AS 'Currency Match'
+       D.isComplete 'Contract Completed'
 
 		
 		
@@ -68,12 +47,13 @@ LEFT JOIN Cancellation_Fee DDCF ON DDCF.dealDateID = DD.id
 
 	LEFT JOIN (SELECT showID, category, SUM(amount) AS "amount"
 	FROM Contract_Extra
-	WHERE type LIKE "above_line"
+	WHERE type LIKE 'above_line'
 	GROUP BY showID) OV ON OV.showID = DD.id
 
 
 
-WHERE DD.date BETWEEN '2022-01-01' AND '2022-12-31'
+WHERE P.dateReceived = CURRENT_DATE - INTERVAL 1 DAY
+AND DD.date < NOW()
 # AND D.id = 101078
 GROUP BY DD.id
 ORDER BY DD.date, D.id

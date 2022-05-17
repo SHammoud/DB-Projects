@@ -25,26 +25,12 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/phase1</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="Local SQL DEV (Windows)" group="DEV" uuid="1299ecf9-9b4b-4e2d-998a-5b842e5d176b">
-      <driver-ref>sqlserver.ms</driver-ref>
-      <synchronize>true</synchronize>
-      <remarks>SQL 2019 Windows - Server 2019</remarks>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://192.168.73.102:1433;database=Tempo</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="Local SQL DEV (Linux)" group="DEV" uuid="04c0a30b-4739-4bb4-bc4c-6a445064ee38">
-      <driver-ref>sqlserver.ms</driver-ref>
-      <synchronize>true</synchronize>
-      <remarks>SQL 2019 Linux - Ubuntu</remarks>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://192.168.73.100:1433;database=Tempo</jdbc-url>
-    </data-source>
     <data-source source="LOCAL" name="Local MYSQL DEV (Linux)" group="DEV" uuid="2ecca888-278e-43bc-bd9f-f3a06846708a">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <remarks>Maria DB - Ubuntu</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://192.168.73.100:3306</jdbc-url>
+      <jdbc-url>jdbc:mysql://10.211.55.4:3306</jdbc-url>
       <driver-properties>
         <property name="serverTimezone" value="UTC" />
       </driver-properties>

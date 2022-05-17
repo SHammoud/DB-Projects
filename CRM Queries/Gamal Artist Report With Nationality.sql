@@ -29,7 +29,7 @@ LEFT JOIN Nationality N on A.nationalityID = N.id
 
 
 
-WHERE DD.date BETWEEN '2021-07-01' AND '2021-09-30'
+WHERE DD.date BETWEEN '2021-10-01' AND '2021-12-31'
 AND DD.dealID IS NOT NULL
 AND (COALESCE(D.cancelled, 0) + DD.cancelled = 0)
 ORDER BY DD.date,A.name

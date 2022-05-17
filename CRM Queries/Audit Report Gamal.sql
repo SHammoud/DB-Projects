@@ -13,6 +13,12 @@ SELECT
            WHEN D.contractType = 'CORPORATE' THEN 'CORPORATE'
            WHEN D.contractType = 'BRANDPARTNERSHIP' THEN 'BRAND PARTNERSHIP'
            ELSE 'STANDARD' END                                                    AS 'Type',
+           CASE
+       WHEN DD.cvStatus = 'PRESUMED_CANCELLATION' THEN 'PRESUMED CANCELLED'
+       WHEN DD.cvStatus = 'RESCHEDULE' THEN 'RESCHEDULE'
+       WHEN DD.cvStatus = 'SUCCESSFULLY_RESCHEDULED' THEN 'SUCCESSFULLY RESCHEDULED'
+       WHEN DD.cvStatus = 'RESCHEDULE_TBC' THEN 'RESCHEDULE TBC'
+       END AS 'CV Status',
        CX.code                                                                    AS 'Currency',
        COALESCE(DD.worth)                                        AS 'Fee',
        COALESCE(DD.commissionRate, A.commissionRate) / 100                        AS 'Commission Rate',
@@ -44,7 +50,7 @@ FROM Deal_Date DD
 
 
 
-WHERE DD.date BETWEEN '2020-01-01' AND '2020-12-31'
+WHERE DD.date BETWEEN '2021-01-01' AND '2021-12-31'
 AND DD.worth > 0
 AND DD.dealID IS NOT NULL
 AND (COALESCE(D.cancelled, 0) + DD.cancelled = 0)

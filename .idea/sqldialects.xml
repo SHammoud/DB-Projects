@@ -10,6 +10,7 @@
     <file url="file://$PROJECT_DIR$/CRM Queries/Agents shows by status.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Artist Splits.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Artist Team Report.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/CRM Queries/Audit Report Gamal.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Clem Maternity.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Client Accountant Report.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/CRM Queries/Commission Totals for specified year.sql" dialect="MySQL" />
