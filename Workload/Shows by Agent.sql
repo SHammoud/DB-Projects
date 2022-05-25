@@ -15,13 +15,14 @@ SELECT
     # COUNT(*) AS 'Contracts'
 FROM
     Deal_Date DD
+    LEFT JOIN Deal D ON DD.dealID = D.id
     LEFT JOIN User U ON DD.userID = U.id
 WHERE
-    YEAR(DD.date) = 2020
+    YEAR(DD.date) = 2022
     AND U.disabled IS NULL
     AND U.id NOT IN ('2632', '2132')
     AND U.usertypeID = 87
-	AND DD.cancelled = 0 OR D.cancelled
+	AND DD.cancelled + D.cancelled < 1
  
 GROUP BY
     U.id

@@ -1,5 +1,5 @@
-SET @YEAR = '2022';
-SET @DATE = '2021-12-31';
+SET @YEAR = '2020';
+SET @DATE = '2019-05-17';
 
 SELECT CONCAT(U.name, ' ', U.surname)                       AS 'Agent',
 	   ROUND(SUM(IF(SMR.month = '1', SMR.gross_commission, NULL)),0) AS 'Jan',
@@ -51,4 +51,4 @@ FROM Snapshots_Master_Report SMR
 WHERE SMR.date = @DATE
   AND SMR.year = @YEAR
 
-ORDER BY Agent = 'Corporate Commission', Agent
+

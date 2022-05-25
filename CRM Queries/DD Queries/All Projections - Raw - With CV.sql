@@ -36,7 +36,7 @@ LEFT JOIN Deal D on DD.dealID = D.id
 
 WHERE
 YEAR(DD.date) = 2022
-AND MONTHNAME(DD.date) ='March'
+# AND MONTHNAME(DD.date) ='March'
 AND DD.type NOT IN ('OFFER_REJECTED')
 AND DD.cancelled = 0
 GROUP BY DD.id

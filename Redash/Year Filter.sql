@@ -1,0 +1,8 @@
+SELECT DISTINCT
+
+DATE_FORMAT(DD.date, "%Y") AS "Year"
+
+FROM Deal_Date DD
+
+WHERE DD.date > "2018%"
+ORDER BY DD.date ASC

@@ -1,7 +1,7 @@
 # Remove production contract
 # Set the prod variable below
 
-SET @prod = 98962  ; # <-- ADD production contract ID here
+SET @prod = 111214  ; # <-- ADD production contract ID here
 
 UPDATE Deal D
 SET D.paymentSchedulePresetId = NULL , D.nextCodaPaymentScheduleID = NULL , D.nextPaymentScheduleID = NULL

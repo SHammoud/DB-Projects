@@ -52,7 +52,7 @@ LEFT JOIN Cancellation_Fee DDCF ON DDCF.dealDateID = DD.id
 
 
 
-WHERE P.dateReceived = CURRENT_DATE - INTERVAL 1 DAY
+WHERE P.dateReceived = CURRENT_DATE() - INTERVAL 1 DAY
 AND DD.date < NOW()
 # AND D.id = 101078
 GROUP BY DD.id

@@ -73,7 +73,7 @@ LEFT JOIN Cancellation_Fee DDCF ON DDCF.dealDateID = DD.id
 
 
 
-WHERE DD.date BETWEEN '2022-01-01' AND '2022-12-31'
-# AND D.id = 101078
+WHERE DD.date BETWEEN '2022-05-24' AND '2022-12-31'
+AND D.contractType = 'FESTIVAL'
 GROUP BY DD.id
 ORDER BY DD.date, D.id
