@@ -3,8 +3,9 @@
 
 UPDATE Deal_Date DD
 LEFT JOIN Artist A ON DD.artistID = A.id
-    SET DD.splitRate = 100
+LEFT JOIN User U ON DD.userID = U.id
+    SET DD.splitRate = A.splitRate
 WHERE A.id = % # <-- Add artist ID here
-AND YEAR(DD.date) > 2020
+AND YEAR(DD.date) > 2022
 AND dealID IS NOT NULL
-AND DD.splitRate != 100
+AND DD.splitRate IS NULL

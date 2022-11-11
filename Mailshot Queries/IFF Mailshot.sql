@@ -21,11 +21,10 @@ LEFT JOIN Territory T on CO.territoryID = T.id
 LEFT JOIN Currency CU ON DD.currencyID = CU.id
 
 WHERE DD.dealID IS NOT NULL
-AND DD.date BETWEEN  DAYOFYEAR('2022-07-13') AND DAYOFYEAR('2022-08-13')
 AND C.disabled IS NULL
-AND C.name NOT IN ('Test', 'PT')
-AND (V.name LIKE '%Fest%' OR D.contractType LIKE 'FESTIVAL')
+AND C.name NOT IN ("Test", "PT")
+AND (V.name LIKE "%Fest%" OR D.contractType LIKE "FESTIVAL")
 AND T.name IN ('United Kingdom','Europe')
 GROUP BY C.email
-HAVING Shows > 0 AND Fee > '40000' AND Last > '2018'
+HAVING Shows > 1 AND Fee > "1000" AND Last > "2018"
 ORDER BY Shows DESC

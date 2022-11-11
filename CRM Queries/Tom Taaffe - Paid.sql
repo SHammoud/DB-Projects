@@ -10,7 +10,7 @@ SELECT
        CASE
            WHEN DD.cancelled + D.cancelled > 0 THEN IFNULL(DCF.fee,0) + IFNULL(DDCF.fee,0)
            ELSE DD.worth+(IFNULL(OV.amount,0)/100)
-        END AS 'Total Fee',
+        END AS 'Total_Fee',
 
       CASE
            WHEN DD.cancelled + D.cancelled > 0 THEN (IFNULL(DCF.fee,0) + IFNULL(DDCF.fee,0))/COALESCE(DD.exchangeRate,CX.rate)
@@ -20,13 +20,18 @@ SELECT
            WHEN DD.cancelled + D.cancelled > 0 THEN  ((IFNULL(DCF.fee,0) + IFNULL(DDCF.fee,0))*(COALESCE(DD.commissionRate,A.commissionRate)/100))/COALESCE(DD.exchangeRate,CX.rate)
            ELSE ((DD.worth+(IFNULL(OV.amount,0)/100))*(COALESCE(DD.commissionRate,A.commissionRate)/100)/COALESCE(DD.exchangeRate,CX.rate))
       END AS 'Total Commission In GBP',
-	 COALESCE(DD.exchangeRate,CX.rate) AS 'FX Rate',
+
 
 #        DATE_FORMAT(BT.entryDate,'%Y-%m-%d') AS 'Transaction Date',
 # 	  GROUP_CONCAT(BT.receiptNo SEPARATOR ' ') AS 'Receipt No',
-       IFNULL(SUM( P.amount),0) 'Received',
+#        SUM(CASE
+#     WHEN D.id = DD.dealID
+#     THEN P.amount
+#     ELSE 0
+# END) AS 'Received',
 #        GROUP_CONCAT(P.id),
-#        DD.cvStatus AS 'CV Status',
+    SUM(P.amount) AS 'Received',
+       DD.cvStatus AS 'CV Status',
        D.cancelled 'Deal Cancelled',
        DD.cancelled 'Show Cancelled',
        D.isComplete 'Contract Completed',
@@ -36,12 +41,11 @@ SELECT
            ELSE ROUND(SUM(DISTINCT (PA.amount/PA.currencyExchangeRate)/100),2)
         END  AS 'Paid to Artist',
        ACX.code AS 'Statement Currency',
-       ACX.rate AS 'Statement Default Rate'
-#         CASE
-#            WHEN ACX.code = CX.code  THEN CONCAT('YES')
-#            WHEN SUM(DISTINCT PA.amount/100) IS NULL THEN CONCAT(NULL)
-#            ELSE CONCAT('NO')
-#         END  AS 'Currency Match'
+        CASE
+           WHEN ACX.code = CX.code  THEN CONCAT('YES')
+           WHEN SUM(DISTINCT PA.amount/100) IS NULL THEN CONCAT(NULL)
+           ELSE CONCAT('NO')
+        END  AS 'Currency Match'
 
 		
 		
@@ -74,7 +78,10 @@ LEFT JOIN Cancellation_Fee DDCF ON DDCF.dealDateID = DD.id
 
 
 
-WHERE DD.date BETWEEN '2022-01-01' AND '2022-12-31'
-
+WHERE DD.date BETWEEN MAKEDATE(year(now()), 1) AND NOW()
+AND D.userID = 2556
+AND D.isComplete = 0
+AND DD.cancelled = 1
 GROUP BY DD.id
+HAVING Total_Fee > 1
 ORDER BY DD.date, D.id

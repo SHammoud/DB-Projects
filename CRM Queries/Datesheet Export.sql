@@ -30,9 +30,9 @@ FROM Deal_Date DD
 
 
 WHERE YEAR(DD.date) = 2022
-AND MONTHNAME(DD.date) IN ('January', 'February', 'March')
+AND MONTHNAME(DD.date) IN ('January', 'February', 'March','April', 'May', 'June','July','August')
 AND DD.artistID NOT IN (1764)
 AND DD.type NOT IN ('DEALMEMO', 'CONTRACT', 'OFFER_REJECTED', 'CANCELLED')
 AND DD.fee > 0
-#   AND (A.agentID = 1330 OR A.secondaryAgentID = 1330)
+  AND (A.agentID = 2757 OR A.secondaryAgentID = 2757)
 ORDER BY Agent,A.name,DD.date

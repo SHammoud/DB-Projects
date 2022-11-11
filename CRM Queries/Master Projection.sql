@@ -1,20 +1,20 @@
 SET @YEAR = '2020';
-SET @DATE = '2019-05-17';
+SET @DATE = '2019-09-28';
 
 SELECT CONCAT(U.name, ' ', U.surname)                       AS 'Agent',
-	   ROUND(SUM(IF(SMR.month = '1', SMR.gross_commission, NULL)),0) AS 'Jan',
-       ROUND(SUM(IF(SMR.month = '2', SMR.gross_commission, NULL)),0) AS 'Feb',
-       ROUND(SUM(IF(SMR.month = '3', SMR.gross_commission, NULL)),0) AS 'Mar',
-       ROUND(SUM(IF(SMR.month = '4', SMR.gross_commission, NULL)),0) AS 'Apr',
-       ROUND(SUM(IF(SMR.month = '5', SMR.gross_commission, NULL)),0) AS 'May',
-       ROUND(SUM(IF(SMR.month = '6', SMR.gross_commission, NULL)),0) AS 'Jun',
-       ROUND(SUM(IF(SMR.month = '7', SMR.gross_commission, NULL)),0) AS 'Jul',
-       ROUND(SUM(IF(SMR.month = '8', SMR.gross_commission, NULL)),0) AS 'Aug',
-       ROUND(SUM(IF(SMR.month = '9', SMR.gross_commission, NULL)),0) AS 'Sept',
-       ROUND(SUM(IF(SMR.month = '10', SMR.gross_commission, NULL)),0) AS 'Oct',
-       ROUND(SUM(IF(SMR.month = '11', SMR.gross_commission, NULL)),0) AS 'Nov',
-       ROUND(SUM(IF(SMR.month = '12', SMR.gross_commission, NULL)),0) AS 'Dec',
-       ROUND(SUM(SMR.gross_commission),0) AS 'Total'
+	   ROUND(SUM(IF(SMR.month = '1', SMR.agent_commission, NULL)),0) AS 'Jan',
+       ROUND(SUM(IF(SMR.month = '2', SMR.agent_commission, NULL)),0) AS 'Feb',
+       ROUND(SUM(IF(SMR.month = '3', SMR.agent_commission, NULL)),0) AS 'Mar',
+       ROUND(SUM(IF(SMR.month = '4', SMR.agent_commission, NULL)),0) AS 'Apr',
+       ROUND(SUM(IF(SMR.month = '5', SMR.agent_commission, NULL)),0) AS 'May',
+       ROUND(SUM(IF(SMR.month = '6', SMR.agent_commission, NULL)),0) AS 'Jun',
+       ROUND(SUM(IF(SMR.month = '7', SMR.agent_commission, NULL)),0) AS 'Jul',
+       ROUND(SUM(IF(SMR.month = '8', SMR.agent_commission, NULL)),0) AS 'Aug',
+       ROUND(SUM(IF(SMR.month = '9', SMR.agent_commission, NULL)),0) AS 'Sept',
+       ROUND(SUM(IF(SMR.month = '10', SMR.agent_commission, NULL)),0) AS 'Oct',
+       ROUND(SUM(IF(SMR.month = '11', SMR.agent_commission, NULL)),0) AS 'Nov',
+       ROUND(SUM(IF(SMR.month = '12', SMR.agent_commission, NULL)),0) AS 'Dec',
+       ROUND(SUM(SMR.agent_commission),0) AS 'Total'
 
 
 FROM Snapshots_Master_Report SMR
@@ -26,6 +26,7 @@ WHERE SMR.date = @DATE
   AND U.disabled IS NULL
 
 GROUP BY U.id
+
 
 UNION
 
@@ -50,5 +51,6 @@ FROM Snapshots_Master_Report SMR
 
 WHERE SMR.date = @DATE
   AND SMR.year = @YEAR
+
 
 

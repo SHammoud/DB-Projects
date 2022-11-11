@@ -9,14 +9,7 @@ SELECT
        DD.worth AS 'Total Fee',
        (DD.worth/COALESCE(DD.exchangeRate,CX.rate)) AS 'Total Fee In GBP',
        (DD.worth*(COALESCE(DD.commissionRate,A.commissionRate)/100)/COALESCE(DD.exchangeRate,CX.rate)) AS 'Total Commission In GBP',
-       
-       CONCAT(PA.name,' ',PA.surname) AS 'Primary Agent',
-       (DD.worth/COALESCE(DD.exchangeRate,CX.rate)) * (DD.splitRate/100) 'Primary Agent Fee',
-       ((DD.worth/COALESCE(DD.exchangeRate,CX.rate)) * (DD.splitRate/100))*(COALESCE(DD.commissionRate,A.commissionRate)/100) AS 'Primary Agent Commission',
-      
-       CONCAT(SA.name,' ',SA.surname) AS 'Secondary Agent',
-       (DD.worth/COALESCE(DD.exchangeRate,CX.rate)) - ((DD.worth/COALESCE(DD.exchangeRate,CX.rate)) * (DD.splitRate/100)) 'Secondary Agent Fee',
-	   ((DD.worth/COALESCE(DD.exchangeRate,CX.rate)) - ((DD.worth/COALESCE(DD.exchangeRate,CX.rate))* (DD.splitRate/100)))*(COALESCE(DD.commissionRate,A.commissionRate)/100) AS 'Secondary Agent Commission',
+       (DD.worth*(COALESCE(DD.commissionRate,A.commissionRate)/100)/COALESCE(DD.exchangeRate,CX.rate))*(DD.corporateRate/100)  AS 'Total Corp Commission In GBP',
 
        D.cancelled 'Deal Cancelled',
        DD.cancelled 'Show Cancelled',
@@ -50,6 +43,7 @@ WHERE
 YEAR(DD.date) = 2022
 # AND A.id IN ('2421','3068')
 AND D.cancelled = 0
+AND DD.corporateRate IS NOT NULL
 
 UNION
 
@@ -64,15 +58,7 @@ SELECT
        COALESCE(IFNULL(DCF.fee/SD.ShowCount,0),DD.worth) AS 'Total Fee',
        (COALESCE(IFNULL(DCF.fee/SD.ShowCount,0),DD.worth)/COALESCE(DD.exchangeRate,CX.rate)) AS 'Total Fee In GBP',
        (COALESCE(IFNULL(DCF.fee/SD.ShowCount,0),DD.worth)*(COALESCE(DD.commissionRate,A.commissionRate)/100)/COALESCE(DD.exchangeRate,CX.rate)) AS 'Total Commission In GBP',
-       
-       CONCAT(PA.name,' ',PA.surname) AS 'Primary Agent',
-       (COALESCE(IFNULL(DCF.fee/SD.ShowCount,0),DD.worth)/COALESCE(DD.exchangeRate,CX.rate)) * (DD.splitRate/100) 'Primary Agent Fee',
-       ((COALESCE(IFNULL(DCF.fee/SD.ShowCount,0),DD.worth)/COALESCE(DD.exchangeRate,CX.rate)) * (DD.splitRate/100))*(COALESCE(DD.commissionRate,A.commissionRate)/100) AS 'Primary Agent Commission',
-      
-       CONCAT(SA.name,' ',SA.surname) AS 'Secondary Agent',
-       (COALESCE(IFNULL(DCF.fee/SD.ShowCount,0),DD.worth)/COALESCE(DD.exchangeRate,CX.rate)) - ((COALESCE(IFNULL(DCF.fee/SD.ShowCount,0),DD.worth)/COALESCE(DD.exchangeRate,CX.rate)) * (DD.splitRate/100)) 'Secondary Agent Fee',
-	   ((COALESCE(IFNULL(DCF.fee/SD.ShowCount,0),DD.worth)/COALESCE(DD.exchangeRate,CX.rate)) - ((COALESCE(IFNULL(DCF.fee/SD.ShowCount,0),DD.worth)/COALESCE(DD.exchangeRate,CX.rate))* (DD.splitRate/100)))*(COALESCE(DD.commissionRate,A.commissionRate)/100) AS 'Secondary Agent Commission',
-
+       (COALESCE(IFNULL(DCF.fee/SD.ShowCount,0),DD.worth)*(COALESCE(DD.commissionRate,A.commissionRate)/100)/COALESCE(DD.exchangeRate,CX.rate))*(DD.corporateRate/100) AS 'Total Corp Commission In GBP',
        D.cancelled 'Deal Cancelled',
        DD.cancelled 'Show Cancelled',
        D.isComplete 'Contract Completed',
@@ -109,5 +95,6 @@ LEFT JOIN Cancellation_Fee DCF ON DCF.dealID = DD.dealID
 WHERE
 YEAR(DD.date) = 2022
 AND D.cancelled = 1
+AND DD.corporateRate IS NOT NULL
 # AND A.id IN ('2421','3068')
 GROUP BY DD.id

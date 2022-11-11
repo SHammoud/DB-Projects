@@ -6,6 +6,7 @@ SELECT
        V.name 'Venue',
        V.city 'City',
        CO.country 'Country',
+       DD.corporateRate/100 AS 'Corp Carveout',
        CX.code AS 'Currency',
        CASE
            WHEN DD.cancelled + D.cancelled > 0 THEN IFNULL(DCF.fee,0) + IFNULL(DDCF.fee,0)
@@ -20,44 +21,31 @@ SELECT
            WHEN DD.cancelled + D.cancelled > 0 THEN  ((IFNULL(DCF.fee,0) + IFNULL(DDCF.fee,0))*(COALESCE(DD.commissionRate,A.commissionRate)/100))/COALESCE(DD.exchangeRate,CX.rate)
            ELSE ((DD.worth+(IFNULL(OV.amount,0)/100))*(COALESCE(DD.commissionRate,A.commissionRate)/100)/COALESCE(DD.exchangeRate,CX.rate))
       END AS 'Total Commission In GBP',
-	 COALESCE(DD.exchangeRate,CX.rate) AS 'FX Rate',
 
-#        DATE_FORMAT(BT.entryDate,'%Y-%m-%d') AS 'Transaction Date',
-# 	  GROUP_CONCAT(BT.receiptNo SEPARATOR ' ') AS 'Receipt No',
-       IFNULL(SUM( P.amount),0) 'Received',
-#        GROUP_CONCAT(P.id),
+
+# #        DATE_FORMAT(BT.entryDate,'%Y-%m-%d') AS 'Transaction Date',
+# # 	  GROUP_CONCAT(BT.receiptNo SEPARATOR ' ') AS 'Receipt No',
+#        SUM( P.amount) 'Received',
+# # #        GROUP_CONCAT(P.id),
 #        DD.cvStatus AS 'CV Status',
        D.cancelled 'Deal Cancelled',
-       DD.cancelled 'Show Cancelled',
-       D.isComplete 'Contract Completed',
-        CASE
-           WHEN ACX.code = CX.code  THEN SUM(DISTINCT PA.amount/100)
-           WHEN SUM(DISTINCT PA.amount/100) IS NULL THEN SUM( PA.amount)
-           ELSE ROUND(SUM(DISTINCT (PA.amount/PA.currencyExchangeRate)/100),2)
-        END  AS 'Paid to Artist',
-       ACX.code AS 'Statement Currency',
-       ACX.rate AS 'Statement Default Rate'
-#         CASE
-#            WHEN ACX.code = CX.code  THEN CONCAT('YES')
-#            WHEN SUM(DISTINCT PA.amount/100) IS NULL THEN CONCAT(NULL)
-#            ELSE CONCAT('NO')
-#         END  AS 'Currency Match'
+       DD.cancelled 'Show Cancelled'
 
 		
 		
        
 
-FROM Bank_Transaction BT
+FROM Deal_Date DD
 
-LEFT JOIN  Currency CX ON BT.currencyId = CX.id
-LEFT JOIN Payment P ON BT.id = P.bankTransactionId
-LEFT JOIN Deal_Date DD ON P.showID = DD.id
+LEFT JOIN  Currency CX ON DD.currencyId = CX.id
+# LEFT JOIN Payment P ON BT.id = P.bankTransactionId
+# LEFT JOIN Deal_Date DD ON P.showID = DD.id
 
-	LEFT JOIN (SELECT id, showID, contractId, SUM(amount) AS "amount", currencyId,currencyExchangeRate
-	FROM Payment_Artist
-	GROUP BY showID) PA ON DD.id = PA.showId
+# 	LEFT JOIN (SELECT id, showID, contractId, SUM(amount) AS "amount", currencyId,currencyExchangeRate
+# 	FROM Payment_Artist
+# 	GROUP BY showID) PA ON DD.id = PA.showId
 
-LEFT JOIN Currency ACX ON PA.currencyId = ACX.id
+# LEFT JOIN Currency ACX ON PA.currencyId = ACX.id
 LEFT JOIN Venue V ON DD.venueID = V.id
 LEFT JOIN Country CO ON V.country = CO.id
 LEFT JOIN Deal D ON DD.dealID = D.id
@@ -74,7 +62,7 @@ LEFT JOIN Cancellation_Fee DDCF ON DDCF.dealDateID = DD.id
 
 
 
-WHERE DD.date BETWEEN '2022-01-01' AND '2022-12-31'
-
+WHERE YEAR(DD.date) = 2019
+AND (DD.corporateRate IS NOT NULL OR D.contractType = 'BRANDPARTNERSHIP')
 GROUP BY DD.id
 ORDER BY DD.date, D.id

@@ -17,13 +17,13 @@ LEFT JOIN Currency CU ON DD.currencyID = CU.id
 WHERE DD.dealID IS NOT NULL
 AND C.disabled IS NULL
 AND DD.isCorporate = 0
-# AND C.country = 223
-# AND T.name IN ('United Kingdom','Europe')
-AND DD.artistID = 1664
+AND CO.region = 'Asia' OR CO.subregion = 'Western Asia'
+# AND T.name IN ('Asia Pacific')
+# AND DD.artistID = 1664
 AND C.name NOT REGEXP 'test|PT|and|/|AEG|behalf|\\(|C.O|/'
 AND C.surname NOT REGEXP 'not use|and|behalf|\\(|/'
 AND C.email NOT REGEXP 'paradigmagency.com|codaagency.com|accounts|info|contracts'
 AND (COALESCE(D.cancelled, 0) + DD.cancelled = 0)
 GROUP BY C.email
-# HAVING Shows > 0 AND Fee > "25000" AND Last > "2018"
+HAVING Shows > 0 AND Fee > "10000" AND Last > "2019"
 ORDER BY Fee DESC

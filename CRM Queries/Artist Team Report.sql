@@ -16,7 +16,7 @@ FROM Artist A
          LEFT JOIN Contact C ON C.id = AC.contactID
 
 WHERE
-    A.agentID = 39 # ADD AGENT ID HERE
+    A.agentID = 725 # ADD AGENT ID HERE
     AND A.disabled IS NULL
     AND C.disabled IS NULL
 

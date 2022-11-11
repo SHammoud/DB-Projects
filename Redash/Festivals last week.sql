@@ -1,6 +1,4 @@
 SELECT
-
-    --   CONCAT(V.name,' ','(',CO.code,')') 'Venue',
        V.name 'Venue',
        A.name 'Artist',
        DATE_FORMAT(DD.date,'%a %b %d') AS 'Show Date',
