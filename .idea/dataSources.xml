@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="CRM PROD" group="PROD" uuid="eb97e7a3-c7a0-459a-a194-9d2822d244ba">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://productiondb.chs7y7nfdeyz.eu-west-1.rds.amazonaws.com:3306/v2_project_coda</jdbc-url>
-    </data-source>
     <data-source source="LOCAL" name="CRM TEST" group="TEST" uuid="74c550a5-77c4-4f86-b959-a27136ace1b8">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
@@ -30,7 +24,7 @@
       <synchronize>true</synchronize>
       <remarks>Maria DB - Ubuntu</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://10.211.55.4:3306</jdbc-url>
+      <jdbc-url>jdbc:mysql://192.168.77.71:3306</jdbc-url>
       <driver-properties>
         <property name="serverTimezone" value="UTC" />
       </driver-properties>
@@ -40,12 +34,6 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://DB-S-TRAN-GLOBAL-SYS.CWHMZLRPQ9V0.US-EAST-1.RDS.AMAZONAWS.COM:3306/CLOUD_STAGING</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="CODA-REPLICA" group="PROD" uuid="0d921659-0daa-497b-b182-d3ab5cbd806b">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://codasharedreplica.cwhmzlrpq9v0.us-east-1.rds.amazonaws.com:3306/CodaShared</jdbc-url>
     </data-source>
     <data-source source="LOCAL" name="INTRANET PROD" group="PROD" uuid="9f544606-ec74-4474-a228-7c1782115865">
       <driver-ref>mysql.8</driver-ref>
@@ -58,6 +46,55 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://jack-stagingdb.cwhmzlrpq9v0.us-east-1.rds.amazonaws.com:3306/CLOUD_STAGING</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="PARADIGM SHARED" group="PROD" uuid="dc5315f0-0c87-41e1-a729-f9bec3774d69">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://paradigmsharedreplica.chs7y7nfdeyz.eu-west-1.rds.amazonaws.com:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="CODA SHARED" group="PROD" uuid="3efc4c36-c906-4c23-8f77-b7c5f2c298bc">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://codashareddb.chs7y7nfdeyz.eu-west-1.rds.amazonaws.com:3306/CodaShared</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="CRM PROD" group="PROD" uuid="363b0a65-191d-437c-8bea-7ffac5b88dce">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://productiondb.chs7y7nfdeyz.eu-west-1.rds.amazonaws.com:3306/v2_project_coda</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="Switzerland- UK Master" group="SWZ-V1" uuid="d580e4d6-cf51-4a50-a6cb-4d186383ab49">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://wassuk.chs7y7nfdeyz.eu-west-1.rds.amazonaws.com:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="Swizerland - NA Master" group="SWZ-V1" uuid="e2a7e823-1c59-493a-a706-7c8baf7cca77">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://wassna.cwhmzlrpq9v0.us-east-1.rds.amazonaws.com:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="NA - Slave" group="SWZ-V2" uuid="59b0fb76-0189-4dc4-9dc2-72e0a2389c3c">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://wassna.cwhmzlrpq9v0.us-east-1.rds.amazonaws.com:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="NA - Master" group="SWZ-V2" uuid="f622491a-ef84-4cc0-b3f4-80ad2e446f19">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://wassna.cwhmzlrpq9v0.us-east-1.rds.amazonaws.com:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
 </project>

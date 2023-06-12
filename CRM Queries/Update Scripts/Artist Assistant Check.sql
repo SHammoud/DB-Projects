@@ -5,5 +5,5 @@ SELECT A.name AS 'Artist',
 FROM Artist A
 LEFT JOIN `User` UAS ON UAS.id = A.bookingAssistantID
 LEFT JOIN `User` UAG ON UAG.id = A.agentID
-WHERE UAG.surname LIKE '%Harvey%'
+WHERE UAG.surname LIKE '%regan%'
 AND A.disabled IS NULL

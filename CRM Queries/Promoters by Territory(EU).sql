@@ -5,17 +5,19 @@
 
 
 SELECT
-COUNT(*) AS "Shows",
-MAX(DD.date) AS "Last Booked",
-C.name AS "Name",
-C.surname AS "Surname",
-C.email AS "Email",
+IF(D.contractType = '','STANDARD',D.contractType) AS "Contract Type",
+IF(D.contractSubtype IS NULL,'DEFAULT',D.contractSubtype) AS "Contract Sub Type",
+V.city AS "City",
 CO.country AS "Country",
-MAX(DD.fee)/CU.rate AS "Fee"
+CONCAT(C.name,' ',C.surname) AS "Promoter",
+C.email AS "Promoter Email",
+C.companyName AS "Promoter Company",
+COUNT(*) AS 'Shows'
 
-FROM Contact C
-LEFT JOIN Deal D ON C.id = D.promoterID
-LEFT JOIN Deal_Date DD ON D.id = DD.dealID
+
+FROM Deal_Date DD
+LEFT JOIN Deal D ON D.id = DD.dealID
+LEFT JOIN Contact C ON C.id = D.promoterID
 LEFT JOIN Venue V ON V.id = DD.venueID
 LEFT JOIN Country CO ON V.country = CO.id
 LEFT JOIN Currency CU ON DD.currencyID = CU.id
@@ -23,12 +25,9 @@ LEFT JOIN Currency CU ON DD.currencyID = CU.id
 WHERE DD.dealID IS NOT NULL
 # AND CO.region IN ("Europe")
 # AND CO.country NOT IN ("United Kingdom")
-AND C.disabled IS NULL
 AND C.name NOT IN ("Test", "PT")
-AND DD.date > "2018"
-AND DD.isCorporate = 0
-AND D.contractType != 'BRANDPARTNERSHIP'
-
-GROUP BY C.id,C.email
-HAVING Shows > 1 AND Fee > "5000"
-ORDER BY Fee DESC
+AND YEAR(DD.date) = 2023
+AND D.cancelled + DD.cancelled = 0
+AND DD.corporateRate IS NULL
+AND D.contractType NOT IN ('CORPORATE','BRANDPARTNERSHIP')
+GROUP BY DD.dealID

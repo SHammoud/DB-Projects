@@ -1,15 +1,13 @@
-# Requested by James Whitting for a mailshot
-# 11/06/20
 
 SELECT
 COUNT(*) AS "Shows",
-MAX(DD.date) AS "Last",
+DD.date AS "Date",
 C.name AS "Name",
 C.surname AS "Surname",
 C.email AS "Email",
 V.name AS "Venue",
-CO.country AS "Country",
-MAX(DD.fee)/CU.rate AS "Fee"
+CO.country AS "Country"
+
 
 
 FROM Contact C
@@ -19,14 +17,16 @@ LEFT JOIN Venue V ON V.id = DD.venueID
 LEFT JOIN Country CO ON V.country = CO.id
 LEFT JOIN Territory T on CO.territoryID = T.id
 LEFT JOIN Currency CU ON DD.currencyID = CU.id
-
+LEFT JOIN Flags F ON F.flaggableId = C.id
 WHERE DD.dealID IS NOT NULL
-AND DAYOFYEAR(DD.date) BETWEEN  DAYOFYEAR('2022-07-17') AND DAYOFYEAR('2022-08-31')
+AND DD.userID IN (2757,3598,87,78)
 AND C.disabled IS NULL
+AND C.blackListed IS NULL
+AND F.id IS NULL
+
 AND C.name NOT IN ('Test', 'PT')
-AND (V.name LIKE '%Fest%' OR D.contractType LIKE 'FESTIVAL')
-# AND T.name IN ('United Kingdom','Europe')
-AND T.name IN ('United Kingdom')
+# AND (D.contractType LIKE 'FESTIVAL'OR V.festivalId IS NOT NULL)
 GROUP BY C.email
-HAVING Shows > 0 AND Fee > '15000' AND Last > '2018'
+HAVING Shows > 1
 ORDER BY Shows DESC
+

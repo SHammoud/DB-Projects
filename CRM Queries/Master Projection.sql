@@ -1,5 +1,5 @@
-SET @YEAR = '2020';
-SET @DATE = '2019-09-28';
+SET @YEAR = '2023';
+SET @DATE = '2023-06-01';
 
 SELECT CONCAT(U.name, ' ', U.surname)                       AS 'Agent',
 	   ROUND(SUM(IF(SMR.month = '1', SMR.agent_commission, NULL)),0) AS 'Jan',

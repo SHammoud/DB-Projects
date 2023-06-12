@@ -21,14 +21,17 @@
 # ORDER BY Shows DESC
 
 SELECT
-V.name AS "Name",
-V.city AS "City",
-CO.country AS "Country"
+V.name AS "Venue Name",
+V.city
 
 FROM Venue V
 LEFT JOIN Country CO ON V.country = CO.id
+LEFT JOIN Deal_Date DD on V.lastBookedShow = DD.id
 
 WHERE V.disabled IS NULL
-
+AND V.capacity < 100
+AND YEAR(DD.date) = 2023
+AND V.name NOT LIKE ('Brand%')
 GROUP BY V.id
 ORDER BY V.name
+LIMIt 25

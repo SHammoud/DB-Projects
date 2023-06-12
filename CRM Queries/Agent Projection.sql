@@ -1,5 +1,5 @@
 SET @YEAR = '2022';
-SET @DATE = '2021-10-06';
+SET @DATE = '2022-06-01';
 
 SELECT A.name                      AS 'Artist',
 	   ROUND(SUM(IF(SAR.month = '1', SAR.gross_commission, NULL)),0) AS 'Jan',
@@ -17,16 +17,16 @@ SELECT A.name                      AS 'Artist',
        ROUND(SUM(SAR.gross_commission),0) AS 'Total'
 
 
-FROM Snapshots_Agent_Report SAR
+FROM Snapshots_Agent_Report_Archive SAR
          LEFT JOIN Artist A ON A.id = SAR.artistId
 		 LEFT JOIN User U ON U.id = SAR.agentId
 
 WHERE SAR.date = @DATE
   AND SAR.year = @YEAR
-  AND A.disabled IS NULL
-  AND SAR.agentId = 40
+  AND SAR.agentId = 79
 
 GROUP BY A.id
+HAVING Total > 0
 
 
 

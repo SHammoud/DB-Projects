@@ -43,7 +43,7 @@ WHERE (A.nationalityID NOT IN (27,
                                155,
                                134)
     OR AC.country != 223)
-  AND DD.date BETWEEN '2021-01-01' AND '2021-12-31'
+  AND DD.date BETWEEN '2023-01-01' AND '2023-03-31'
   AND DD.type IN ('CONTRACT', 'DEALMEMO', 'CONFIRMED')
   AND V.country = 223
 GROUP BY DD.id
