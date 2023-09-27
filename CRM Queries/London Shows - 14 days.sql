@@ -8,8 +8,9 @@ FROM Deal_Date DD
     LEFT JOIN Festivals F ON FS.festivalID = F.id
     LEFT JOIN Deal D ON DD.dealID = D.id
 WHERE V.city LIKE 'London' AND DD.type = 'CONTRACT'
-  AND DD.date BETWEEN CURRENT_DATE() AND DATE_ADD(CURRENT_DATE, INTERVAL +20  DAY)
+#   AND DD.date BETWEEN CURRENT_DATE() AND DATE_ADD(CURRENT_DATE, INTERVAL +20  DAY)
+  AND DD.date BETWEEN '2023-07-25' AND '2023-07-30'
   AND D.cancelled = 0
   AND DD.cancelled = 0
-  AND DD.isCorporate = 0
+  AND DD.corporateRate IS NOT NULL
 ORDER BY DD.date ASC

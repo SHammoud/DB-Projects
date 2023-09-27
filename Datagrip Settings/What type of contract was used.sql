@@ -12,6 +12,7 @@ SELECT
 #            WHEN DD.cvStatus IS NULL THEN ''
 #        END                                                       AS 'CVStatus',
        D.contractType                                            AS "Contract Type",
+       D.contractSubtype										 AS "Contract Subtype",
        A.name                                                    AS "Artist",
        COALESCE(DD.customCountry, CO.country)                    AS "Country",
        COALESCE(DD.customCity, V.city)                           AS "City",
@@ -20,13 +21,13 @@ SELECT
        V.capacity                                                AS "Capacity",
        DD.budgetedCapacity                                       AS "Budgeted Capacity",
        DD.fee                                                    AS "Fee",
-	   COALESCE(ROUND(PF.amount/100,2),0)                        AS "Production Fee",
-       CU.code                                                   AS "Currency",
-       DD.notes                                                  AS "Notes",
-       DD.priceNotes                                             AS "Extra Notes",
-       DD.ticketPrice                                            AS "Ticket Price",
-       COALESCE(DD.tempPromoter, CONCAT(P.name, ' ', P.surname,' (',P.email,')')) AS "Promoter"
-#       CONCAT(BA.name,' ',BA.surname)                             AS "Booking Assistant"
+	   COALESCE(ROUND(PF.amount/100,2),0)                        AS "Production Fee"
+#        CU.code                                                   AS "Currency",
+#        DD.notes                                                  AS "Notes",
+#        DD.priceNotes                                             AS "Extra Notes",
+#        DD.ticketPrice                                            AS "Ticket Price",
+#        COALESCE(DD.tempPromoter, CONCAT(P.name, ' ', P.surname,' (',P.email,')')) AS "Promoter"
+# #       CONCAT(BA.name,' ',BA.surname)                             AS "Booking Assistant"
 
 
 
@@ -46,6 +47,7 @@ WHERE DD.type NOT IN ('OFFER_REJECTED')
   AND DD.fee > 0
 #   AND DD.date BETWEEN CURRENT_DATE AND DATE_ADD(CURRENT_DATE, INTERVAL 24 MONTH)
 #   AND DD.date BETWEEN '2021-01-01' AND '2021-12-31'
+AND YEAR(DD.date) = 2023
   AND (COALESCE(D.cancelled, 0) + DD.cancelled = 0)
   AND V.id = 25062
 

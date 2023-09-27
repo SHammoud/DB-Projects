@@ -36,7 +36,7 @@ LEFT JOIN Nationality N on A.nationalityID = N.id
 
 
 
-WHERE DD.date BETWEEN '2021-01-01' AND '2021-12-31'
+WHERE DD.date BETWEEN '2022-01-01' AND '2022-12-31'
 AND AC.disabled IS NULL
 AND DD.dealID IS NOT NULL
 AND (COALESCE(D.cancelled, 0) + DD.cancelled = 0)
