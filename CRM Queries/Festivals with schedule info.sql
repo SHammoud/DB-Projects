@@ -1,8 +1,6 @@
 SELECT
        F.name AS "Festival",
        PS.year AS 'Schedule Year',
-       PSA.amountFrom 'Amount From',
-       PSA.amountTo 'Amount To',
        CONCAT(ROUND(PSPI.percent),'%') AS 'Percentage',
        CASE
        WHEN PSPI.`trigger` ='festivalStart' THEN CONCAT(PSPI.period,' ',PSPI.periodType,' ',PSPI.direction,' ',REPLACE(PSPI.`trigger`,'festivalStart', 'the start of the festival'))
@@ -15,4 +13,6 @@ FROM Festivals F
         LEFT JOIN Payment_Schedule_Presets PS ON PS.festivalId = F.id
         LEFT JOIN Payment_Schedule_Preset_Items PSPI ON PS.id = PSPI.presetId
         LEFT JOIN Payment_Schedule_Preset_Amounts PSA ON PSPI.amountId = PSA.presetId
-WHERE F.deleted_at IS NULL
+WHERE F.deleted_at IS NULL AND PS.year IS NOT NULL
+
+

@@ -12,7 +12,8 @@ SELECT DD.date                                                     AS 'Show Date
        ROUND(OV.amount / 100, 2)                                   AS 'Overage',
        ROUND(EX.amount / 100, 2)                                   AS 'Extras',
        ROUND(WHT.amount / 100, 2)                                  AS 'Withholding',
-       COALESCE(SUM(PY.amount), 0)                                 AS 'Received'
+       COALESCE(SUM(PY.amount), 0)                                 AS 'Received',
+       SUM(PA.amount) AS 'FEU'
 
 FROM Deal_Date DD
          LEFT JOIN Deal D ON D.id = DD.dealID
@@ -24,6 +25,7 @@ FROM Deal_Date DD
          LEFT JOIN Country ACO ON AC.country = ACO.id
          LEFT JOIN Currency CX ON CX.id = DD.currencyID
          LEFT JOIN `User` U ON U.id = D.userID
+         LEFT JOIN Payment_Artist PA ON DD.id = PA.showId
          LEFT JOIN (SELECT showID, category, SUM(amount) AS "amount"
                     FROM Contract_Extra
                     WHERE category LIKE 'show_overage'
@@ -44,7 +46,7 @@ WHERE (A.nationalityID NOT IN (27,
                                134)
     OR AC.country != 223)
   AND DD.date BETWEEN '2023-01-01' AND '2023-03-31'
-  AND DD.type IN ('CONTRACT', 'DEALMEMO', 'CONFIRMED')
+  AND DD.type IN ('CONTRACT', 'DEALMEMO')
   AND V.country = 223
 GROUP BY DD.id
 ORDER BY DD.date
