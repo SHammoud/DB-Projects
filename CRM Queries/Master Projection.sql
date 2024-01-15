@@ -1,5 +1,5 @@
 SET @YEAR = '2023';
-SET @DATE = '2023-06-01';
+SET @DATE = '2023-12-31';
 
 SELECT CONCAT(U.name, ' ', U.surname)                       AS 'Agent',
 	   ROUND(SUM(IF(SMR.month = '1', SMR.agent_commission, NULL)),0) AS 'Jan',
@@ -26,6 +26,7 @@ WHERE SMR.date = @DATE
   AND U.disabled IS NULL
 
 GROUP BY U.id
+HAVING Total > 0
 
 
 UNION
@@ -52,5 +53,6 @@ FROM Snapshots_Master_Report SMR
 WHERE SMR.date = @DATE
   AND SMR.year = @YEAR
 
+HAVING Total > 0
 
 

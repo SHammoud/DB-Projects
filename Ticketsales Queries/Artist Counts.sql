@@ -1,5 +1,8 @@
 SELECT
-        FROM_UNIXTIME(S.sdate, '%Y-%m-%d') AS 'Date',
+        CASE
+            WHEN FROM_UNIXTIME(S.sdate, '%H') = 23 THEN DATE_ADD(FROM_UNIXTIME(S.sdate, '%Y-%m-%d'),INTERVAL 1 DAY)
+            ELSE DATE_ADD(FROM_UNIXTIME(S.sdate, '%Y-%m-%d'),INTERVAL 0 DAY)
+        END AS 'Date',
         P.pname                            AS 'Artist',
         S.svenue                           AS 'Venue',
         S.stown                             AS 'City',
@@ -17,7 +20,7 @@ FROM shows S
 	
 # TODO UPDATE SO QUERY CAN BE EXECUTED FOR THIS MONTH OR LAST MONTH
 # You need to add UNIX times here:
-WHERE P.pname LIKE '%Omar apollo%'
+WHERE P.pname LIKE '%Sudan%'
 # WHERE T.tid = 7908
 AND D.datavalue != 'No data'
 GROUP BY S.sid

@@ -1,5 +1,5 @@
-SET @YEAR = '2022';
-SET @DATE = '2022-06-01';
+SET @YEAR = '2023';
+SET @DATE = '2022-12-04';
 
 SELECT A.name                      AS 'Artist',
 	   ROUND(SUM(IF(SAR.month = '1', SAR.gross_commission, NULL)),0) AS 'Jan',

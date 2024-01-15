@@ -18,12 +18,16 @@ LEFT JOIN Country CO ON V.country = CO.id
 LEFT JOIN Territory T on CO.territoryID = T.id
 LEFT JOIN Currency CU ON DD.currencyID = CU.id
 LEFT JOIN Flags F ON F.flaggableId = C.id
+
 WHERE DD.dealID IS NOT NULL
-AND DD.userID IN (2757,3598,87,78)
+AND DD.userID IN (39,40,42,78,79,87,3598,1201,1370,2757,1121)
+# Tom, Alex, James, Nick M, Dave, Nick Cave,Sol,MHB,Jim,Cris
+AND DD.date BETWEEN '2023-05-01' AND '2024-09-30'
+AND (DD.worth/CU.rate) > 20000
 AND C.disabled IS NULL
 AND C.blackListed IS NULL
 AND F.id IS NULL
-
+AND T.name IN ('Europe','United Kingdom')
 AND C.name NOT IN ('Test', 'PT')
 # AND (D.contractType LIKE 'FESTIVAL'OR V.festivalId IS NOT NULL)
 GROUP BY C.email

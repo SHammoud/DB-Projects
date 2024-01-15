@@ -68,32 +68,25 @@
       <jdbc-url>jdbc:mysql://productiondb.chs7y7nfdeyz.eu-west-1.rds.amazonaws.com:3306/v2_project_coda</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="Switzerland- UK Master" group="SWZ-V1" uuid="d580e4d6-cf51-4a50-a6cb-4d186383ab49">
+    <data-source source="LOCAL" name="Switzerland v1- UK Master" group="SWZ-V1" uuid="d580e4d6-cf51-4a50-a6cb-4d186383ab49">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://codashareddb.chs7y7nfdeyz.eu-west-1.rds.amazonaws.com:3306/</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="Switzerland v2 - UK Master" group="SWZ-V2" uuid="ea49a309-32df-4e1a-a7c6-6182c3fb4652">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://wassuk.chs7y7nfdeyz.eu-west-1.rds.amazonaws.com:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="Swizerland - NA Master" group="SWZ-V1" uuid="e2a7e823-1c59-493a-a706-7c8baf7cca77">
+    <data-source source="LOCAL" name="MySQL DBngin" group="DEV" uuid="73fdada0-4ba0-42f8-9900-ac3fd8df32ca">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://wassna.cwhmzlrpq9v0.us-east-1.rds.amazonaws.com:3306</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="NA - Slave" group="SWZ-V2" uuid="59b0fb76-0189-4dc4-9dc2-72e0a2389c3c">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://wassna.cwhmzlrpq9v0.us-east-1.rds.amazonaws.com:3306</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="NA - Master" group="SWZ-V2" uuid="f622491a-ef84-4cc0-b3f4-80ad2e446f19">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://wassna.cwhmzlrpq9v0.us-east-1.rds.amazonaws.com:3306</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
